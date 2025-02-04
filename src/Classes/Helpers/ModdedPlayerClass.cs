@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using HarryPotter.Classes.Items;
 using HarryPotter.Classes.UI;
@@ -18,36 +18,31 @@ namespace HarryPotter.Classes
 
         public void Update()
         {
+            // Réinitialiser les cooldowns du rôle si nécessaire
             if (ExileController.Instance != null)
                 Role.ResetCooldowns();
             
+            // Si le joueur est mort, vider les objets
             if (_Object.Data.IsDead)
                 ClearItems();
 
-            /*if (Input.GetKeyDown(KeyCode.I))
-            {
-                for (var i = 0; i < 5; i++) GiveItem(i);
-                GiveItem(6);
-                GiveItem(8);
-                GiveItem(9);
-            }
-            
-            if (Input.GetKeyDown(KeyCode.O)) GiveItem(5);
-            if (Input.GetKeyDown(KeyCode.P)) GiveItem(7);*/
-
+            // Montrer les joueurs morts si l'objet 4 (GhostStone) est dans l'inventaire
             if (HasItem(4))
             {
                 foreach (PlayerControl player in PlayerControl.AllPlayerControls)
                     if (player.Data.IsDead)
                         player.Visible = true;
             }
-            
+
+            // Vérifier si le joueur doit être réanimé
             ShouldRevive = HasItem(9);
-            
+
+            // Mettre à jour les informations de tâche et gérer les couleurs des noms
             TaskInfoHandler.Instance.Update();
             HandleNameColors();
             Role?.Update();
 
+            // Gestion du tir du Vigilante
             if (VigilanteShotEnabled)
             {
                 HudManager.Instance.KillButton.gameObject.SetActive(HudManager.Instance.UseButton.isActiveAndEnabled);
@@ -55,8 +50,11 @@ namespace HarryPotter.Classes
                 HudManager.Instance.KillButton.SetCoolDown(0f, 1f);
             }
 
-            if (Input.GetKeyDown(KeyCode.Q) && VigilanteShotEnabled) HudManager.Instance.KillButton.PerformKill();
+            // Tirer si la touche Q est pressée
+            if (Input.GetKeyDown(KeyCode.Q) && VigilanteShotEnabled) 
+                HudManager.Instance.KillButton.PerformKill();
 
+            // Si on est l'hôte, faire apparaître les objets du monde
             if (AmongUsClient.Instance.AmHost)
             {
                 DeluminatorWorld.WorldSpawn();
@@ -70,6 +68,7 @@ namespace HarryPotter.Classes
                 SortingHatWorld.WorldSpawn();
                 PhiloStoneWorld.WorldSpawn();
 
+                // Vérification de l'Ordre des Imposteurs
                 if (Main.Instance.Config.OrderOfTheImp)
                 {
                     if (Main.Instance.AllPlayers.Any(x => Main.Instance.IsPlayerRole(x, "Harry") && (x._Object.Data.IsDead || x._Object.Data.Disconnected)) &&
@@ -84,22 +83,7 @@ namespace HarryPotter.Classes
 
         public void HandleNameColors()
         {
-            /*if (_Object.Data.IsDead && !CanSeeAllRolesOveridden)
-            {
-                foreach (ModdedPlayerClass moddedPlayer in Main.Instance.AllPlayers)
-                {
-                    if (moddedPlayer.Role == null) continue;
-                    
-                    Main.Instance.SetNameColor(moddedPlayer._Object, moddedPlayer.Role.RoleColor);
-                    moddedPlayer._Object.nameText.transform.position = new Vector3(
-                        moddedPlayer._Object.nameText.transform.position.x,
-                        moddedPlayer._Object.transform.position.y + 0.8f,
-                        moddedPlayer._Object.nameText.transform.position.z);
-                    moddedPlayer._Object.nameText.text =
-                        moddedPlayer._Object.Data.PlayerName + "\n" + moddedPlayer.Role.RoleName;
-                }
-            }*/
-
+            // Si le rôle est null, afficher le nom du joueur avec un rôle par défaut
             if (Role == null)
             {
                 _Object.nameText.text = _Object.Data.PlayerName + "\n" + (_Object.Data.IsImpostor ? "Impostor" : "Muggle");
@@ -110,6 +94,7 @@ namespace HarryPotter.Classes
                 return;
             }
 
+            // Afficher le nom du joueur et la couleur de son rôle
             Main.Instance.SetNameColor(_Object, Role.RoleColor);
             _Object.nameText.text = _Object.Data.PlayerName + "\n" + Role.RoleName;
             _Object.nameText.transform.position = new Vector3(
@@ -117,6 +102,7 @@ namespace HarryPotter.Classes
                 _Object.transform.position.y + 0.8f, 
                 _Object.nameText.transform.position.z);
 
+            // Si le joueur est un imposteur, ajuster les noms des autres imposteurs
             if (_Object.Data.IsImpostor)
             {
                 foreach (ModdedPlayerClass moddedPlayer in Main.Instance.AllPlayers)
@@ -140,74 +126,51 @@ namespace HarryPotter.Classes
             }
         }
         
+        // Vérifier si le joueur a un item avec l'ID spécifié
         public bool HasItem(int id)
         {
-            return Inventory.FindAll(x => x.Id == id).Count > 0;
+            return Inventory.Any(x => x.Id == id);
         }
 
+        // Ajouter un item à l'inventaire du joueur
         public void GiveItem(int id)
         {
-            Item item = null;
-            
-            switch (id)
+            Item item = id switch
             {
-                case 0:
-                    item = new Deluminator(this);
-                    Inventory.Add(item);
-                    break;
-                case 1:
-                    item = new MaraudersMap(this);
-                    Inventory.Add(item);
-                    break;
-                case 2:
-                    item = new PortKey(this);
-                    Inventory.Add(item);
-                    break;
-                case 3:
-                    item = new TheGoldenSnitch(this);
-                    Inventory.Add(item);
-                    break;
-                case 4:
-                    item = new GhostStone(this);
-                    Inventory.Add(item);
-                    break;
-                case 5:
-                    item = new ButterBeer(this); 
-                    Inventory.Add(item);
-                    break;
-                case 6:
-                    item = new ElderWand(this);
-                    Inventory.Add(item);
-                    break;
-                case 7:
-                    item = new BasItem(this);
-                    Inventory.Add(item);
-                    break;
-                case 8:
-                    item = new SortingHat(this);
-                    Inventory.Add(item);
-                    break;
-                case 9:
-                    item = new PhiloStone(this);
-                    Inventory.Add(item);
-                    break;
-            }
+                0 => new Deluminator(this),
+                1 => new MaraudersMap(this),
+                2 => new PortKey(this),
+                3 => new TheGoldenSnitch(this),
+                4 => new GhostStone(this),
+                5 => new ButterBeer(this),
+                6 => new ElderWand(this),
+                7 => new BasItem(this),
+                8 => new SortingHat(this),
+                9 => new PhiloStone(this),
+                _ => null
+            };
 
             if (item == null) return;
+            Inventory.Add(item);
+
+            // Si l'item est un piège, l'utiliser immédiatement
             if (item.IsTrap) item.Use();
 
+            // Afficher un message à l'écran concernant l'item récupéré
             string trapText = "You picked up a trap item! Unpredictable effects have been activated!";
             string normalText = "You picked up an item! Press 'C' to open your Inventory.";
             
             PopupTMPHandler.Instance.CreatePopup(item.IsTrap ? trapText : normalText, Color.white, Color.black);
         }
 
+        // Vider l'inventaire du joueur
         public void ClearItems()
         {
-            while (Inventory.Count > 0)
-                Inventory[0].Delete();
+            foreach (var item in Inventory)
+                item.Delete();
+            Inventory.Clear();
         }
-        
+
         public PlayerControl _Object { get; set; }
         public Role Role { get; set; }
         public ModdedPlayerClass ControllerOverride { get; set; }
