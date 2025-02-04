@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using HarryPotter.Classes.Helpers.UI;
@@ -75,12 +75,17 @@ namespace HarryPotter.Classes.Roles
                 player.myRend?.material?.SetColor("_OutlineColor", Color.yellow);
             }
             
+            // Vérification supplémentaire pour s'assurer que l'inventaire et autres UI ne bloquent pas les capacités
+            if (InventoryUI.Instance.IsOpen || InventoryUI.Instance.IsOpeningOrClosing)
+                return;
+
             DrawButtons();
 
             if (MindControlledPlayer != null)
                 return;
 
-            if (Input.GetMouseButtonDown(1)) CastCrucio();
+            if (Input.GetMouseButtonDown(1)) 
+                CastCrucio();
         }
 
         public override bool ShouldDrawCustomButtons()
@@ -115,6 +120,10 @@ namespace HarryPotter.Classes.Roles
                 return;
 
             if (Owner._Object.inVent)
+                return;
+
+            // Vérification de si un menu est ouvert ou en transition avant d'ouvrir le menu de contrôle mental
+            if (MindControlMenu.Instance.IsOpeningOrClosing)
                 return;
 
             MindControlMenu.Instance.ToggleMenu();
@@ -155,6 +164,7 @@ namespace HarryPotter.Classes.Roles
             if (Owner._Object.inVent && !Main.Instance.Config.SpellsInVents)
                 return;
 
+            // Vérification d'inventaire
             if (InventoryUI.Instance.IsOpen || InventoryUI.Instance.IsOpeningOrClosing)
                 return;
 
