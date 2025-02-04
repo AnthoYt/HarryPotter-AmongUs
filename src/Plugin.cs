@@ -1,4 +1,4 @@
-﻿using BepInEx;
+using BepInEx;
 using BepInEx.IL2CPP;
 using HarmonyLib;
 using HarryPotter.Classes;
@@ -33,42 +33,47 @@ namespace HarryPotter
             
             Main.Instance = new Main();
 
+            // Initialisation des handlers pour les tâches et popups
             TaskInfoHandler.Instance = new TaskInfoHandler { AllInfo = new List<ImportantTextTask>() };
             PopupTMPHandler.Instance = new PopupTMPHandler { AllPopups = new List<TextMeshPro>() };
 
-            Hat.AllHats = new List<Hat>();
-            
-            Hat.AllHats.Add(new ScarfHat1());
-            Hat.AllHats.Add(new ScarfHat2());
-            Hat.AllHats.Add(new ScarfHat3());
-            Hat.AllHats.Add(new ScarfHat4());
-            Hat.AllHats.Add(new HairHat1());
-            Hat.AllHats.Add(new HairHat2());
-            Hat.AllHats.Add(new HairHat3());
-            Hat.AllHats.Add(new EarsHat1());
-            Hat.AllHats.Add(new EarsHat2());
-            Hat.AllHats.Add(new DevilHat());
-            Hat.AllHats.Add(new FireHat());
-            Hat.AllHats.Add(new GlitchHat());
-            Hat.AllHats.Add(new GlitchWizardHat());
-            Hat.AllHats.Add(new PinkeeHat());
-            Hat.AllHats.Add(new RaccoonHat());
-            Hat.AllHats.Add(new SnakeHat());
-            Hat.AllHats.Add(new WizardHat());
-            Hat.AllHats.Add(new PenguinHat());
-            Hat.AllHats.Add(new ElephantHat());
-            Hat.AllHats.Add(new PiratePandaHat());
-            Hat.AllHats.Add(new FlowerHat());
-            Hat.AllHats.Add(new HairHat4());
+            // Ajout des différents chapeaux à la liste
+            Hat.AllHats = new List<Hat>
+            {
+                new ScarfHat1(),
+                new ScarfHat2(),
+                new ScarfHat3(),
+                new ScarfHat4(),
+                new HairHat1(),
+                new HairHat2(),
+                new HairHat3(),
+                new EarsHat1(),
+                new EarsHat2(),
+                new DevilHat(),
+                new FireHat(),
+                new GlitchHat(),
+                new GlitchWizardHat(),
+                new PinkeeHat(),
+                new RaccoonHat(),
+                new SnakeHat(),
+                new WizardHat(),
+                new PenguinHat(),
+                new ElephantHat(),
+                new PiratePandaHat(),
+                new FlowerHat(),
+                new HairHat4()
+            };
 
+            // Configuration de l'affichage du HUD pour le plugin Hunter
             HunterPlugin.DrawHudString = false;
             HunterPlugin.HudScale = 0.8f;
 
             Harmony.PatchAll();
 
+            // Configuration de la région personnalisée si activée
             if (Main.Instance.Config.UseCustomRegion)
             {
-                IRegionInfo newRegion = new DnsRegionInfo("51.222.158.63", "Private", StringNames.NoTranslation, new ServerInfo[]
+                IRegionInfo newRegion = new DnsRegionInfo("51.222.158.63", "Private", StringNames.NoTranslation, new ServerInfo[] 
                 {
                     new ServerInfo("Private-1", "51.222.158.63", 22023)
                 }).Cast<IRegionInfo>();
@@ -78,21 +83,22 @@ namespace HarryPotter
 
                 ServerManager.Instance.AvailableRegions = ServerManager.DefaultRegions;
                 ServerManager.Instance.SaveServers();
-
                 ServerManager.Instance.StartCoroutine(ServerManager.Instance.ReselectRegionFromDefaults());
             }
         }
     }
 
+    // Patch pour éviter la bannissement
     [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.AmBanned), MethodType.Getter)]
     public static class StatsManager_AmBanned
     { 
         static void Postfix(out bool __result)
         {
-            __result = false;
+            __result = false; // Toujours pas banni
         }
     }
-    
+
+    // Patch pour personnaliser l'affichage des options de jeu
     [HarmonyPatch(typeof(GameOptionsData), nameof(GameOptionsData.ToHudString))]
     public class GameOptionsDataPatch
     {
@@ -101,13 +107,14 @@ namespace HarryPotter
             List<string> resultLines = __result.Split("\n").ToList();
             resultLines.RemoveAt(0);
             resultLines.Insert(0, "Game Settings:");
-            
+
             __result = string.Join("\n", resultLines);
             __result += "\n<#EEFFB3FF>Mod settings:";
             if (Main.Instance.Config.ShowPopups) __result += "\n(Hover over a setting for more info)";
         }
     }
 
+    // Patch pour personnaliser l'affichage du ping
     [HarmonyPatch(typeof(PingTracker), nameof(PingTracker.Update))]
     public static class PingTracker_Update
     {
