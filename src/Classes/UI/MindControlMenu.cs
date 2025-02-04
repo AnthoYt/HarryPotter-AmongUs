@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Linq;
 using HarryPotter.Classes.Helpers.UI;
@@ -11,14 +11,13 @@ using UnityEngine;
 namespace HarryPotter.Classes
 {
     [RegisterInIl2Cpp]
-    public class MindControlMenu: MonoBehaviour
+    public class MindControlMenu : MonoBehaviour
     {
-        public MindControlMenu(IntPtr ptr) : base(ptr)
-        {
-        }
+        public MindControlMenu(IntPtr ptr) : base(ptr) { }
         
         private void Awake()
         {
+            // Empêche la création d'une nouvelle instance si une instance existe déjà.
             if (Instance != null)
             {
                 Instance.Destroy();
@@ -26,20 +25,25 @@ namespace HarryPotter.Classes
             }
 
             Instance = this;
-            
+
+            // Empêcher la destruction du menu à la fermeture de la scène.
             gameObject.DontDestroy();
+            
+            if (PanelPrefab == null) return;  // Vérification de null avant de tenter l'instanciation.
             Panel = Instantiate(PanelPrefab).DontDestroy();
             Panel.transform.SetParent(null);
             
             Transform closeButtonObj = Panel.transform.FindChild("CloseButton");
-            
+
+            // Création du bouton de fermeture
             CustomButton closeButton = closeButtonObj.gameObject.AddComponent<CustomButton>();
             closeButton.HoverColor = Color.green;
             closeButton.OnClick += CloseMenu;
 
             Tooltip closeTooltip = closeButtonObj.gameObject.AddComponent<Tooltip>();
             closeTooltip.TooltipText = "Close Menu";
-            
+
+            // Création des slots pour les joueurs
             for (var i = 0; i < Panel.transform.FindChild("Players").childCount; i++)
             {
                 Transform inventoryButton = Panel.transform.FindChild("Players").GetChild(i);
@@ -47,17 +51,23 @@ namespace HarryPotter.Classes
                 slot.PlayerIndex = i;
             }
 
+            // Initialisation de l'état du menu
             IsOpen = false;
-            Panel.active = false;
+            Panel.SetActive(false);
         }
         
         private void LateUpdate()
         {
-            Panel.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2));
-            IsOpen = Panel.active;
+            // Mise à jour de la position du panneau du menu
+            if (Camera.main != null)
+                Panel.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2));
+
+            // Vérification de l'état d'ouverture du menu
+            IsOpen = Panel.activeSelf;
 
             if (!IsOpen) return;
 
+            // Fermeture du menu dans divers cas
             if (Minigame.Instance) Minigame.Instance.ForceClose();
             if (Main.Instance.GetPlayerRoleName(Main.Instance.GetLocalModdedPlayer()) != "Bellatrix") CloseMenu();
             if (Input.GetKeyDown(KeyCode.Escape)) CloseMenu();
@@ -77,25 +87,26 @@ namespace HarryPotter.Classes
         {
             hunterlib.Classes.Coroutines.Start(CoClose());
         }
-        
+
         public IEnumerator CoOpen()
         {
             if (IsOpeningOrClosing) yield break;
             
             IsOpeningOrClosing = true;
             IsOpen = true;
-            Panel.active = true;
-            Vector2 initalScale = Panel.transform.localScale;
+            Panel.SetActive(true);  // Remplacer active par SetActive
+
+            Vector2 initialScale = Panel.transform.localScale;
             float perc = 0.2f;
-            
+
             while (perc < 1f)
             {
-                Panel.transform.localScale = new Vector2( initalScale.x * perc, initalScale.y * perc);
+                Panel.transform.localScale = new Vector2(initialScale.x * perc, initialScale.y * perc);
                 perc += 0.2f;
                 yield return null;
             }
 
-            Panel.transform.localScale = initalScale;
+            Panel.transform.localScale = initialScale;
             IsOpeningOrClosing = false;
         }
 
@@ -104,24 +115,25 @@ namespace HarryPotter.Classes
             if (IsOpeningOrClosing) yield break;
             
             IsOpeningOrClosing = true;
-            Vector2 initalScale = Panel.transform.localScale;
+            Vector2 initialScale = Panel.transform.localScale;
             float perc = 1f;
-            
+
             while (perc > 0f)
             {
-                Panel.transform.localScale = new Vector2( initalScale.x * perc, initalScale.y * perc);
+                Panel.transform.localScale = new Vector2(initialScale.x * perc, initialScale.y * perc);
                 perc -= 0.2f;
                 yield return null;
             }
-            
+
             IsOpen = false;
-            Panel.active = false;
-            Panel.transform.localScale = initalScale;
+            Panel.SetActive(false);  // Remplacer active par SetActive
+            Panel.transform.localScale = initialScale;
             IsOpeningOrClosing = false;
         }
 
         public void ToggleMenu()
         {
+            // Vérifications avant d'ouvrir/fermer le menu
             if (Main.Instance.GetPlayerRoleName(Main.Instance.GetLocalModdedPlayer()) != "Bellatrix") return;
             if (!AmongUsClient.Instance.IsGameStarted) return;
             if (HudManager.Instance?.UseButton?.isActiveAndEnabled == false) return;
@@ -136,7 +148,8 @@ namespace HarryPotter.Classes
             if (IsOpen) CloseMenu();
             else OpenMenu();
         }
-        
+
+        // Déclaration des propriétés
         public bool IsOpen { get; set; }
         public bool IsOpeningOrClosing { get; set; }
         public GameObject Panel { get; set; }
