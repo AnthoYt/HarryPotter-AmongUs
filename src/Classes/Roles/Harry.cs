@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using HarryPotter.Classes.UI;
 using UnityEngine;
 
@@ -39,6 +39,10 @@ namespace HarryPotter.Classes.Roles
             if (!HudManager.Instance)
                 return;
             
+            // Ajout de la vérification si l'inventaire ou un autre UI bloque l'activation
+            if (InventoryUI.Instance.IsOpen || InventoryUI.Instance.IsOpeningOrClosing)
+                return;
+
             DrawButtons();
         }
         
@@ -62,8 +66,13 @@ namespace HarryPotter.Classes.Roles
 
             if (Owner._Object.Data.IsDead)
                 return;
-            
+
+            // Ajout de la vérification si le joueur a un contrôle alternatif (override)
             if (Owner.ControllerOverride != null)
+                return;
+
+            // Ajout d'une vérification pour les cinématiques ou d'autres systèmes de jeu
+            if (Main.Instance.IsInCutscene)
                 return;
 
             Main.Instance.RpcInvisPlayer(Owner._Object);
