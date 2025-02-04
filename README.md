@@ -1,74 +1,77 @@
 # Harry Potter Mod
-A theme-based Among Us mod that adds items and roles related to the Harry Potter movies/books.
+Un mod Among Us basé sur un thème qui ajoute des éléments et des rôles liés aux films/livres Harry Potter.
 
 https://www.youtube.com/watch?v=b22hzt0sPhE&lc=UgwfTwSKfYn_ASfQxL14AaABAg
 
-# Installation Instructions (Launcher)
-This mod comes packaged with an easy to use launcher. NOTE: The launcher sometimes gets flagged as a virus/unsafe. If you have any problems with the Launcher or concerns with it's safety, you can install the mod tradationally. (see below)
+# Instructions d'installation (Launcher)
+
+Ce mod est livré avec un lanceur facile à utiliser. REMARQUE : Le lanceur est parfois signalé comme étant un virus/dangereux. Si vous rencontrez des problèmes avec le lanceur ou des inquiétudes concernant sa sécurité, vous pouvez installer le mod de manière traditionnelle. (voir ci-dessous)
+
+- Vérifiez que vous avez installé le [C++ Redist](https://aka.ms/vs/16/release/vc_redist.x86.exe).
+- Cliquez sur l'onglet intitulé "Releases" à droite de cette page.
+- Téléchargez le "HPLauncher.exe" depuis la section "Actifs".
+- Une fois téléchargé, lancez le fichier exe.
+- Cliquez sur le bouton "Installer" et attendez que le mod termine l'installation.
+- Une fois installé, appuyez sur le bouton "Play".
+- Une fois le jeu ouvert, démarrez une partie locale et recherchez le filigrane à droite de l'écran.
+- Le module est installé. Hourra!
+
+# Instructions d'installation (traditionnelles)
+
+Pour un didacticiel d'installation vidéo, allez [here](https://www.youtube.com/watch?v=MN-prLtBrcQ).
 
 - Verify you have installed the [C++ Redist](https://aka.ms/vs/16/release/vc_redist.x86.exe).
-- Click on the tab labeled "Releases" on the right of this page.
-- Download the "HPLauncher.exe" from "Assets" section.
-- Once it is downloaded, launch the exe file.
-- Click on the "Install" button and wait for the mod to finish installing.
-- Once it is installed, press the "Play" button.
-- Once the game is open, start a local game and check for the watermark at the right of the screen.
-- The mod is installed. Hooray!
-
-# Installation Instructions (Traditional)
-For a video installation tutorial, go [here](https://www.youtube.com/watch?v=MN-prLtBrcQ).
-
-- Verify you have installed the [C++ Redist](https://aka.ms/vs/16/release/vc_redist.x86.exe).
-- Click on the tab labeled "Releases" on the right of this page.
-- Click on the zip file inside the latest release window (either "latest.zip", or "HPMod.zip").
-- Once it is downloaded, open the zip file.
-- Open steam, right click on Among Us, hover over "Manage", and then press "Browse Local Files".
-- If you see a folder called "BepInEx", delete it before installing the mod. This is to verify you don't accidentally install multiple incompatible mods. 
-- Drag all the files inside the downloaded zip file into your Among Us folder (if it prompts you to replace any files, do it).
-- Open the game and wait; the first start may take a few minutes.
-- Once the game is open, start a local game and check for the watermark at the right of the screen.
-- The mod is installed. Hooray!
+- Cliquez sur l'onglet intitulé "Releases" à droite de cette page.
+- Cliquez sur le fichier zip dans la fenêtre de la dernière version (soit "latest.zip", soit "HPMod.zip").
+- Une fois téléchargé, ouvrez le fichier zip.
+- Ouvrez Steam, faites un clic droit sur Among Us, survolez « Gérer », puis appuyez sur « Parcourir les fichiers locaux ».
+- Si vous voyez un dossier appelé "BepInEx", supprimez-le avant d'installer le mod. Ceci permet de vérifier que vous n'installez pas accidentellement plusieurs mods incompatibles. 
+- Faites glisser tous les fichiers du fichier zip téléchargé dans votre dossier Among Us (s'il vous invite à remplacer des fichiers, faites-le).
+- Ouvrez le jeu et attendez ; le premier démarrage peut prendre quelques minutes.
+- Une fois le jeu ouvert, démarrez une partie locale et recherchez le filigrane à droite de l'écran.
+- Le mod est installé. Hourra!
 
 # Roles
 
-Role  | Passive Ability  |  Active Ability  |  Active Ability #2
+Role  | Capacité passive |  Active Ability  |  Capacité active #2
 ------------- | ------------- | ------------- | -------------
-Harry  |  Can not be killed by Voldemort's spell.  |  Can become invisible for 10 seconds.  | None.
-Hermione  | None.  |  Can teleport themselves back to where they were 10 seconds ago. This can bring the player back to life, unless they are killed by Voldemort's spell.  |  None.
-Ron  |  None.  | Can activate an ability that prevents any spells or kills being used against the player.  |  None.
-Voldemort  |  None.  |  Can shoot a spell that will kill any player it connects with, except Harry; it will kill Voldemort instead.  |  None.
-Bellatrix  |  None.  |  Can shoot a spell that temporarily blinds and freezes any player it connects with.  |  Can mind-control any player they choose and kill someone as that player. (shares a cooldown with the kill button)
+Harry  |  Ne peut pas être tué par le sort de Voldemort.  | Peut devenir invisible pendant 10 secondes.  | Rien.
+Hermione  | Rien.  |  Peut se téléporter là où il se trouvait il y a 10 secondes. Cela peut ramener le joueur à la vie, à moins qu'il ne soit tué par le sort de Voldemort. |  Rien.
+Ron  |  Rien.  | Peut activer une capacité qui empêche tout sort ou meurtre d'être utilisé contre le joueur. |  Rien.
+Voldemort  |  Rien.  | Peut lancer un sort qui tuera n'importe quel joueur avec lequel il se connecte, à l'exception d'Harry ; cela tuera Voldemort à la place.  |  Rien.
+Bellatrix  |  Rien.  | Peut lancer un sort qui aveugle et gèle temporairement tout joueur avec lequel il se connecte.  |  Peut contrôler mentalement n'importe quel joueur de son choix et tuer quelqu'un en tant que joueur.
+(partage un temps de recharge avec le bouton kill)
 
 # Items
 
-Item  | Explanation
+Item  | Explication
 ------------- | -------------
-Deluminator  |  Toggles the status of the lights.
-Port Key  | Teleports the user to the emergency meeting button.
-Marauder’s Map  |  Zooms out the player's vision so they can see almost the entire map.
-The Golden Snitch  |  Can be used during meetings to force all the votes onto a single player.
-Resurrection Stone  |  Allows the holder to see ghosts.
-Elder Wand  |  If the holder is a crewmate, it grants them a one-time kill button, and if they're an Impostor, it refreshes all their cooldowns.
-Sorting Hat  |  Target a player during the meeting phase to reveal their role to the entire lobby.
-Philosopher Stone  |  Revives the holder if they are killed or voted off.
-Butter Beer (Trap Item)  |  For 10 seconds the user’s controls are reversed and their speed is increased (immediately used on pick-up).
-Basilisk (Trap Item)  |  Stuns the player who touches the item and lowers their vision until the next meeting is called (immediately used on pick-up).
+Déluminateur |  Bascule l'état des lumières.
+Clé de port | Téléporte l'utilisateur vers le bouton de réunion d'urgence.
+Carte du maraudeur |  Effectue un zoom arrière sur la vision du joueur afin qu'il puisse voir presque toute la carte.
+Le vif d'or |  Peut être utilisé lors de réunions pour imposer tous les votes à un seul joueur.
+Pierre de résurrection |  Permet au détenteur de voir les fantômes.
+Baguette de sureau |  Si le détenteur est un coéquipier, cela lui accorde un bouton de mise à mort unique, et s'il est un imposteur, cela actualise tous ses temps de recharge.
+Chapeau de tri |  Ciblez un joueur pendant la phase de réunion pour révéler son rôle à l'ensemble du lobby.
+Pierre philosophale |  Ranime le détenteur s'il est tué ou rejeté.
+Bière au beurre (article piège) |  Pendant 10 secondes, les commandes de l'utilisateur sont inversées et leur vitesse est augmentée (immédiatement utilisée lors de la prise en charge).
+Basilic (objet piège) |  Étourdit le joueur qui touche l'objet et baisse sa vision jusqu'à la convocation de la prochaine réunion (immédiatement utilisé lors du ramassage).
 
-# Game Options
+# Options de jeu
 
-Game Setting  | Explanation
+Paramètres du jeu | Explication
 ------------- | -------------
-Defensive Duelist Cooldown  |  Changes the cooldown of Ron's active ability.
-Invisibility Cloak Cooldown  |  Changes the cooldown of Harry's active ability.
-Time Turner Cooldown  |  Changes the cooldown of Hermione's active ability.
-Crucio Cooldown  |  Changes the cooldown of Bellatrix's spell.
-Order of the Impostors  | If toggled, the Impostors can win by eliminating Harry, Hermione, and Ron.
-Can Spells be Used in Vents  | If toggled, spells can be casted while the caster is inside a vent.
-Show Info Popups/Tooltips  |  When 'On', informational popups/tooltips will be shown.
-Shared Voldemort Cooldowns  |  When 'On', the Kill button and the Curse button will share a cooldown.
+Temps de recharge du duelliste défensif |  Modifie le temps de recharge de la capacité active de Ron.
+Temps de recharge de la cape d'invisibilité |  Modifie le temps de recharge de la capacité active de Harry.
+Temps de recharge du retourneur de temps |  Modifie le temps de recharge de la capacité active d'Hermione.
+Temps de recharge Doloris |  Modifie le temps de recharge du sort de Bellatrix.
+Ordre des imposteurs | S'ils sont activés, les imposteurs peuvent gagner en éliminant Harry, Hermione et Ron.
+Les sorts peuvent-ils être utilisés dans les évents | S'il est activé, les sorts peuvent être lancés pendant que le lanceur est à l'intérieur d'un évent.
+Afficher les fenêtres contextuelles d'information/info-bulles |  Lorsque « Activé », des fenêtres contextuelles/info-bulles d'informations seront affichées.
+Temps de recharge partagés de Voldemort |  Lorsqu'ils sont activés, les boutons Kill et Curse partageront un temps de recharge.
 
-# Bugs or feature suggestions
-For general help with issues, feature suggestions, or bugs, join the [Discord Server](https://discord.gg/chGrxw8mJk).
+# Bugs ou suggestions de fonctionnalités
+Pour obtenir une aide générale sur les problèmes, les suggestions de fonctionnalités ou les bogues, rejoignez le <a href="https://discord.com/invite/ad7aMevNMx" target="_blank">Discord</a>
 
 # License
-This software is distributed under the <a href="./LICENSE">`GNU GPLv3 License`</a>.
+Ce logiciel est distribué sous le <a href="./LICENSE">`GNU GPLv3 License`</a>.
