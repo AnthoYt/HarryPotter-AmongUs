@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using TMPro;
 using hunterlib.Classes;
@@ -16,29 +16,36 @@ namespace HarryPotter.Classes.Helpers.UI
         public Color HoverColor { get; set; }
         public bool Enabled { get; set; }
         public SpriteRenderer Renderer { get; set; }
-        
-        public CustomButton(IntPtr ptr) : base(ptr)
-        {
-        }
+
+        public CustomButton(IntPtr ptr) : base(ptr) { }
 
         public void SetColor(Color color)
         {
             HoverColor = color;
-            Renderer.material.SetColor("_OutlineColor", color);
+            if (Renderer != null)
+            {
+                Renderer.material.SetColor("_OutlineColor", color);
+            }
         }
         
         private void Start()
         {
             Enabled = true;
             Renderer = gameObject.GetComponent<SpriteRenderer>();
-            Renderer.material.shader = Shader.Find("Sprites/Outline");
-            Renderer.material.SetColor("_OutlineColor", HoverColor);
+            if (Renderer != null)
+            {
+                Renderer.material.shader = Shader.Find("Sprites/Outline");
+                Renderer.material.SetColor("_OutlineColor", HoverColor);
+            }
             gameObject.AddComponent<BoxCollider2D>().isTrigger = true;
         }
 
-        public void Update()
+        private void Update()
         {
-            if (!Enabled) Renderer.material.SetFloat("_Outline", 0f);
+            if (!Enabled && Renderer != null)
+            {
+                Renderer.material.SetFloat("_Outline", 0f);
+            }
         }
 
         private void OnMouseDown()
@@ -49,20 +56,19 @@ namespace HarryPotter.Classes.Helpers.UI
 
         public void OnMouseOver()
         {
-            if (!Input.GetMouseButtonDown(1)) return;
-            if (!Enabled) return;
+            if (!Enabled || !Input.GetMouseButtonDown(1)) return;
             OnRightClick?.Invoke();
         }
 
         private void OnMouseEnter()
         {
-            if (!Enabled) return;
+            if (!Enabled || Renderer == null) return;
             Renderer.material.SetFloat("_Outline", 1f);
         }
 
         private void OnMouseExit()
         {
-            if (!Enabled) return;
+            if (!Enabled || Renderer == null) return;
             Renderer.material.SetFloat("_Outline", 0f);
         }
     }
