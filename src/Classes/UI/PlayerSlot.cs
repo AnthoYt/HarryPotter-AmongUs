@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using HarryPotter.Classes.Roles;
 using HarryPotter.Classes.UI;
@@ -10,12 +10,11 @@ namespace HarryPotter.Classes.Helpers.UI
     [RegisterInIl2Cpp]
     class PlayerSlot : MonoBehaviour
     {
-        public PlayerSlot(IntPtr ptr) : base(ptr)
-        {
-        }
+        public PlayerSlot(IntPtr ptr) : base(ptr) { }
 
         private void Awake()
         {
+            // Récupère le bouton et ajoute des composants nécessaires
             GameObject itemButtonObj = gameObject.transform.GetChild(0).gameObject;
             PlayerButton = itemButtonObj.gameObject.AddComponent<CustomButton>();
             PlayerButton.OnClick += TryControlTargetedPlayer;
@@ -24,23 +23,24 @@ namespace HarryPotter.Classes.Helpers.UI
 
         public void TryControlTargetedPlayer()
         {
-            ModdedPlayerClass localModdedPlayer = Main.Instance.GetLocalModdedPlayer();
+            ModdedPlayerClass localModdedPlayer = Main.Instance?.GetLocalModdedPlayer();
             
-            if (localModdedPlayer == null) return;
-            if (((Bellatrix) localModdedPlayer.Role).MindControlledPlayer != null) return;
-            if (((Bellatrix) localModdedPlayer.Role).MindControlButton.isCoolingDown) return;
+            // Vérifications des conditions nécessaires avant d'essayer de contrôler un joueur
+            if (localModdedPlayer == null || ((Bellatrix)localModdedPlayer.Role).MindControlledPlayer != null) return;
+            if (((Bellatrix)localModdedPlayer.Role).MindControlButton.isCoolingDown) return;
             if (Main.Instance.ModdedPlayerById(TargetedPlayer.PlayerId).Immortal) return;
-            if (PlayerControl.LocalPlayer.Data.IsDead) return;
-            if (TargetedPlayer.Data.IsDead) return;
+            if (PlayerControl.LocalPlayer.Data.IsDead || TargetedPlayer.Data.IsDead) return;
             if (TargetedPlayer.Data.Disconnected) return;
-            if (Main.Instance.GetPlayerRoleName(localModdedPlayer) == "Bellatrix")
-                if (((Bellatrix) localModdedPlayer.Role).MarkedPlayers.All(x => x.PlayerId != TargetedPlayer.PlayerId)) return;
-            if (PlayerControl.LocalPlayer.inVent) return;
-            if (MeetingHud.Instance) return;
-            if (ExileController.Instance) return;
-            if (!PlayerButton.Enabled) return;
-            if (PlayerButton.HoverColor != Color.yellow) return;
+            
+            // Vérifie si le joueur cible est marqué par Bellatrix
+            if (Main.Instance.GetPlayerRoleName(localModdedPlayer) == "Bellatrix" && 
+                !((Bellatrix)localModdedPlayer.Role).MarkedPlayers.Any(x => x.PlayerId == TargetedPlayer.PlayerId)) return;
+            
+            // Autres vérifications d'état
+            if (PlayerControl.LocalPlayer.inVent || MeetingHud.Instance || ExileController.Instance) return;
+            if (!PlayerButton.Enabled || PlayerButton.HoverColor != Color.yellow) return;
 
+            // Fermeture du menu de contrôle et demande de contrôle sur le joueur ciblé
             MindControlMenu.Instance.CloseMenu();
             Main.Instance.RpcControlPlayer(PlayerControl.LocalPlayer, TargetedPlayer);
         }
@@ -50,44 +50,32 @@ namespace HarryPotter.Classes.Helpers.UI
             PlayerButton.Enabled = false;
             PlayerTooltip.Enabled = false;
             
-            ModdedPlayerClass localModdedPlayer = Main.Instance.GetLocalModdedPlayer();
-            if (Main.Instance.GetPlayerRoleName(localModdedPlayer) != "Bellatrix")
+            ModdedPlayerClass localModdedPlayer = Main.Instance?.GetLocalModdedPlayer();
+            if (localModdedPlayer == null || Main.Instance.GetPlayerRoleName(localModdedPlayer) != "Bellatrix")
             {
-                if (Icon != null)
-                {
-                    Icon.HatSlot.Destroy();
-                    Icon.SkinSlot.Destroy();
-                    Icon.Body.Destroy();
-                    Icon.gameObject.Destroy();
-                    Icon.Destroy();
-                }
-                Icon = null;
+                // Si ce n'est pas Bellatrix ou qu'il n'y a pas de joueur local, on réinitialise l'icône
+                DestroyIcon();
                 return;
             }
             
-            if (((Bellatrix) localModdedPlayer.Role).MarkedPlayers.Count < PlayerIndex + 1)
+            if (((Bellatrix)localModdedPlayer.Role).MarkedPlayers.Count < PlayerIndex + 1)
             {
-                if (Icon != null)
-                {
-                    Icon.HatSlot.Destroy();
-                    Icon.SkinSlot.Destroy();
-                    Icon.Body.Destroy();
-                    Icon.gameObject.Destroy();
-                    Icon.Destroy();
-                }
-                Icon = null;
+                // Si le joueur local n'a pas assez de joueurs marqués, on réinitialise l'icône
+                DestroyIcon();
                 return;
             }
 
-            TargetedPlayer = ((Bellatrix) localModdedPlayer.Role).MarkedPlayers.ToArray()[PlayerIndex];
+            // Cibler le joueur marqué par Bellatrix
+            TargetedPlayer = ((Bellatrix)localModdedPlayer.Role).MarkedPlayers[PlayerIndex];
             GameData.PlayerInfo data = TargetedPlayer.Data;
 
+            // Activer et configurer le bouton et l'icône
             PlayerButton.Enabled = true;
             PlayerButton.SetColor(Color.yellow);
-
             PlayerTooltip.Enabled = true;
             PlayerTooltip.TooltipText = data.PlayerName;
 
+            // Créer l'icône si nécessaire
             if (Icon == null)
             {
                 Icon = Instantiate(HudManager.Instance.IntroPrefab.PlayerPrefab, gameObject.transform).DontDestroy();
@@ -101,6 +89,7 @@ namespace HarryPotter.Classes.Helpers.UI
                 Icon.transform.localScale = Vector3.one * 2f;
             }
 
+            // Configurer les matériaux et autres attributs visuels de l'icône
             PlayerControl.SetPlayerMaterialColors(data.ColorId, Icon.Body);
             DestroyableSingleton<HatManager>.Instance.SetSkin(Icon.SkinSlot, data.SkinId);
             Icon.HatSlot.SetHat(data.HatId, data.ColorId);
@@ -108,11 +97,26 @@ namespace HarryPotter.Classes.Helpers.UI
             Icon.NameText.gameObject.SetActive(false);
         }
 
+        private void DestroyIcon()
+        {
+            // Méthode pour détruire proprement l'icône
+            if (Icon != null)
+            {
+                Icon.HatSlot.Destroy();
+                Icon.SkinSlot.Destroy();
+                Icon.Body.Destroy();
+                Icon.gameObject.Destroy();
+                Icon.Destroy();
+                Icon = null;
+            }
+        }
+
         public void LateUpdate()
         {
             if (MindControlMenu.Instance.IsOpen) ResetIcon();
         }
-        
+
+        // Déclaration des propriétés
         public Tooltip PlayerTooltip { get; set; }
         public CustomButton PlayerButton { get; set; }
         public int PlayerIndex { get; set; }
