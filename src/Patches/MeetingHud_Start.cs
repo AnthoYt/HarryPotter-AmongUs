@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using HarryPotter.Classes;
@@ -15,45 +15,40 @@ namespace HarryPotter.Patches
     {
         static void Prefix(MeetingHud __instance)
         {
+            // Fonction pour créer un bouton spécifique
+            void CreateButton(PlayerVoteArea voteArea, GameObject originalButton, string buttonName, Sprite buttonSprite, Color buttonColor, float xOffset)
+            {
+                GameObject newButton = Object.Instantiate(originalButton);
+                newButton.name = buttonName;
+                newButton.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = buttonColor;
+                newButton.GetComponent<SpriteRenderer>().sprite = buttonSprite;
+                newButton.transform.SetParent(voteArea.Buttons.transform);
+                newButton.transform.localPosition = new Vector3(
+                    originalButton.transform.localPosition.x - (originalButton.transform.localPosition.x - voteArea.Buttons.transform.GetChild(1).transform.localPosition.x) * xOffset,
+                    originalButton.transform.localPosition.y, originalButton.transform.localPosition.z);
+                newButton.transform.localScale = originalButton.transform.localScale;
+                newButton.SetActive(true);
+            }
+
+            // Ajout du bouton "Snitch" si le joueur possède l'objet 3
             if (Main.Instance.GetLocalModdedPlayer().HasItem(3))
             {
                 foreach (PlayerVoteArea voteArea in __instance.playerStates)
                 {
                     GameObject confirmButton = voteArea.Buttons.transform.GetChild(0).gameObject;
                     GameObject cancelButton = voteArea.Buttons.transform.GetChild(1).gameObject;
-                    GameObject snitchButton = Object.Instantiate(confirmButton);
-                    snitchButton.name = "SnitchButton";
-                    snitchButton.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
-                    snitchButton.GetComponent<SpriteRenderer>().sprite = Main.Instance.Assets.SmallSnitchSprite;
-                    snitchButton.transform.SetParent(voteArea.Buttons.transform);
-                    snitchButton.transform.localPosition = new Vector3(
-                        confirmButton.transform.localPosition.x -
-                        (cancelButton.transform.localPosition.x - confirmButton.transform.localPosition.x),
-                        confirmButton.transform.localPosition.y, confirmButton.transform.localPosition.z);
-                    snitchButton.transform.localScale = confirmButton.transform.localScale;
-                    snitchButton.SetActive(true);
+                    CreateButton(voteArea, confirmButton, "SnitchButton", Main.Instance.Assets.SmallSnitchSprite, Color.yellow, 1f);
                 }
             }
 
+            // Ajout du bouton "Sort" si le joueur possède l'objet 8
             if (Main.Instance.GetLocalModdedPlayer().HasItem(8))
             {
                 foreach (PlayerVoteArea voteArea in __instance.playerStates)
                 {
                     GameObject confirmButton = voteArea.Buttons.transform.GetChild(0).gameObject;
                     GameObject cancelButton = voteArea.Buttons.transform.GetChild(1).gameObject;
-                    GameObject sortButton = Object.Instantiate(cancelButton);
-                    sortButton.name = "SortButton";
-                    sortButton.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(195f / 255f, 0f, 1f);
-                    sortButton.GetComponent<SpriteRenderer>().sprite = Main.Instance.Assets.SmallSortSprite;
-                    sortButton.transform.SetParent(voteArea.Buttons.transform);
-
-                    sortButton.transform.localPosition = new Vector3(
-                        confirmButton.transform.localPosition.x -
-                        (cancelButton.transform.localPosition.x - confirmButton.transform.localPosition.x * (voteArea.Buttons.transform.childCount == 4 ? 0.12f : 1f)),
-                        confirmButton.transform.localPosition.y, confirmButton.transform.localPosition.z);
-
-                    sortButton.transform.localScale = confirmButton.transform.localScale;
-                    sortButton.SetActive(true);
+                    CreateButton(voteArea, cancelButton, "SortButton", Main.Instance.Assets.SmallSortSprite, new Color(195f / 255f, 0f, 1f), 0.12f);
                 }
             }
         }
