@@ -1,4 +1,4 @@
-﻿namespace HarryPotter.Classes.Items
+namespace HarryPotter.Classes.Items
 {
     public class ElderWand : Item
     {
@@ -14,12 +14,17 @@
 
         public override void Use()
         {
-            Delete();
+            Delete(); // Supprime l'objet une fois utilisé
 
+            // Si le joueur est un imposteur, réinitialise les cooldowns
             if (Owner._Object.Data.IsImpostor)
-                Owner.Role?.RemoveCooldowns();
+            {
+                Owner.Role?.RemoveCooldowns(); // Supprime les cooldowns pour l'imposteur
+            }
             else
-                Owner.VigilanteShotEnabled = true;
+            {
+                Owner.VigilanteShotEnabled = true; // Active la possibilité d'un tir de justicier
+            }
         }
     }
 }
