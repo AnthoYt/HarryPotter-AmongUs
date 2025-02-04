@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using Discord;
-using HarryPotter.Classes.WorldItems;
-using Hazel;
 using UnityEngine;
 using InnerNet;
+using Hazel;
+using HarryPotter.Classes.WorldItems;
 
 namespace HarryPotter.Classes.Items
 {
     public class MaraudersMap : Item
     {
+        private float _zoomFactor = 4f; // Facteur de zoom pour l'effet de la carte
+
         public MaraudersMap(ModdedPlayerClass owner)
         {
             this.Owner = owner;
@@ -21,59 +21,62 @@ namespace HarryPotter.Classes.Items
             this.Name = "Marauder's Map";
             this.Tooltip = $"Marauder's Map:\nTemporarily zooms out\nthe camera. {Main.Instance.Config.MapDuration}s duration.";
         }
+
         public override void Use()
         {
-            this.Delete();
+            this.Delete(); // Supprime l'objet une fois utilisé
             hunterlib.Classes.Coroutines.Start(ZoomOut());
         }
 
         public IEnumerator ZoomOut()
         {
-            DateTime now = DateTime.UtcNow;
-            Camera.main.orthographicSize *= 4f;
-            
-            bool oldActive = HudManager.Instance.ShadowQuad.gameObject.active;
-            bool oldActiveKill = HudManager.Instance.KillButton.gameObject.active;
-            bool oldActiveUse = HudManager.Instance.UseButton.gameObject.active;
-            bool oldActiveReport = HudManager.Instance.ReportButton.gameObject.active;
-            bool oldUseConsoles = Owner.CanUseConsoles;
+            DateTime endTime = DateTime.UtcNow.AddSeconds(Main.Instance.Config.MapDuration); // Détermine la durée de l'effet
+
+            Camera.main.orthographicSize *= _zoomFactor; // Zoom avant
+
+            // Sauvegarde de l'état actuel de l'UI et de la possibilité d'utiliser les consoles
+            bool oldActiveShadowQuad = HudManager.Instance.ShadowQuad.gameObject.activeSelf;
+            bool oldActiveKillButton = HudManager.Instance.KillButton.gameObject.activeSelf;
+            bool oldActiveUseButton = HudManager.Instance.UseButton.gameObject.activeSelf;
+            bool oldActiveReportButton = HudManager.Instance.ReportButton.gameObject.activeSelf;
+            bool oldCanUseConsoles = Owner.CanUseConsoles;
+
+            // Désactivation de certains éléments de l'UI pendant l'effet
             HudManager.Instance.ShadowQuad.gameObject.SetActive(false);
             HudManager.Instance.KillButton.gameObject.SetActive(false);
             HudManager.Instance.UseButton.gameObject.SetActive(false);
             HudManager.Instance.ReportButton.gameObject.SetActive(false);
             Owner.CanUseConsoles = false;
 
-            while (true)
+            // Boucle jusqu'à la fin de la durée ou jusqu'à ce qu'une condition d'arrêt se produise
+            while (DateTime.UtcNow < endTime)
             {
                 if (Minigame.Instance)
-                    Minigame.Instance.Close();
-                
-                if ((now.AddSeconds(Main.Instance.Config.MapDuration) - DateTime.UtcNow).TotalMilliseconds < 0)
-                    break;
+                    Minigame.Instance.Close(); // Ferme le mini-jeu si ouvert
 
-                if (MeetingHud.Instance)
+                if (MeetingHud.Instance) // Si une réunion est en cours, arrête l'effet
                 {
-                    oldActiveKill = false;
-                    oldActiveReport = false;
-                    oldActiveUse = false;
                     break;
                 }
 
+                // Si le jeu n'a pas commencé, arrête l'effet
                 if (AmongUsClient.Instance.GameState != InnerNetClient.GameStates.Started)
                     break;
 
-                yield return null;
+                yield return null; // Attend la prochaine frame
             }
 
-            Camera.main.orthographicSize /= 4f;
-            
-            HudManager.Instance.ShadowQuad.gameObject.SetActive(oldActive);
-            HudManager.Instance.KillButton.gameObject.SetActive(oldActiveKill);
-            HudManager.Instance.UseButton.gameObject.SetActive(oldActiveUse);
-            HudManager.Instance.ReportButton.gameObject.SetActive(oldActiveReport);
-            Owner.CanUseConsoles = oldUseConsoles;
+            // Restauration de la caméra et de l'UI après l'effet
+            Camera.main.orthographicSize /= _zoomFactor;
 
-            yield break;
+            // Restauration de l'UI
+            HudManager.Instance.ShadowQuad.gameObject.SetActive(oldActiveShadowQuad);
+            HudManager.Instance.KillButton.gameObject.SetActive(oldActiveKillButton);
+            HudManager.Instance.UseButton.gameObject.SetActive(oldActiveUseButton);
+            HudManager.Instance.ReportButton.gameObject.SetActive(oldActiveReportButton);
+            Owner.CanUseConsoles = oldCanUseConsoles;
+
+            yield break; // Fin de la coroutine
         }
     }
 }
