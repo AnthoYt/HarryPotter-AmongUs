@@ -13,14 +13,14 @@ Ce mod est livré avec un lanceur facile à utiliser. REMARQUE : Le lanceur est 
 - Une fois téléchargé, lancez le fichier exe.
 - Cliquez sur le bouton "Installer" et attendez que le mod termine l'installation.
 - Une fois installé, appuyez sur le bouton "Play".
-- Une fois le jeu ouvert, démarrez une partie locale et recherchez le filigrane à droite de l'écran.
+- Une fois le jeu ouvert, démarrez une partie et recherchez le filigrane à droite de l'écran.
 - Le module est installé. Hourra!
 
 # Instructions d'installation (traditionnelles)
 
 Pour un didacticiel d'installation vidéo, allez [here](https://www.youtube.com/watch?v=MN-prLtBrcQ).
 
-- Verify you have installed the [C++ Redist](https://aka.ms/vs/16/release/vc_redist.x86.exe).
+- Vérifiez que vous avez installé le [C++ Redist](https://aka.ms/vs/16/release/vc_redist.x86.exe).
 - Cliquez sur l'onglet intitulé "Releases" à droite de cette page.
 - Cliquez sur le fichier zip dans la fenêtre de la dernière version (soit "latest.zip", soit "HPMod.zip").
 - Une fois téléchargé, ouvrez le fichier zip.
