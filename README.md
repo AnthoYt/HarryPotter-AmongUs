@@ -16,7 +16,7 @@ Ce mod est livré avec un lanceur facile à utiliser. REMARQUE : Le lanceur est 
 - Une fois le jeu ouvert, démarrez une partie et recherchez le filigrane à droite de l'écran.
 - Le module est installé. Hourra!
 
-# Instructions d'installation (traditionnelles)
+# Turo d'installation
 
 Pour un didacticiel d'installation vidéo, allez [here](https://www.youtube.com/watch?v=MN-prLtBrcQ).
 
@@ -33,7 +33,7 @@ Pour un didacticiel d'installation vidéo, allez [here](https://www.youtube.com/
 
 # Roles
 
-Role  | Capacité passive |  Active Ability  |  Capacité active #2
+Role  | Capacité passive |  Capacité active  |  Capacité active #2
 ------------- | ------------- | ------------- | -------------
 Harry  |  Ne peut pas être tué par le sort de Voldemort.  | Peut devenir invisible pendant 10 secondes.  | Rien.
 Hermione  | Rien.  |  Peut se téléporter là où il se trouvait il y a 10 secondes. Cela peut ramener le joueur à la vie, à moins qu'il ne soit tué par le sort de Voldemort. |  Rien.
@@ -42,7 +42,7 @@ Voldemort  |  Rien.  | Peut lancer un sort qui tuera n'importe quel joueur avec 
 Bellatrix  |  Rien.  | Peut lancer un sort qui aveugle et gèle temporairement tout joueur avec lequel il se connecte.  |  Peut contrôler mentalement n'importe quel joueur de son choix et tuer quelqu'un en tant que joueur.
 (partage un temps de recharge avec le bouton kill)
 
-# Items
+# Items Rôles
 
 Item  | Explication
 ------------- | -------------
@@ -73,5 +73,5 @@ Temps de recharge partagés de Voldemort |  Lorsqu'ils sont activés, les bouton
 # Bugs ou suggestions de fonctionnalités
 Pour obtenir une aide générale sur les problèmes, les suggestions de fonctionnalités ou les bogues, rejoignez le <a href="https://discord.com/invite/ad7aMevNMx" target="_blank">Discord</a>
 
-# License
+# Licence
 Ce logiciel est distribué sous le <a href="./LICENSE">`GNU GPLv3 License`</a>.
