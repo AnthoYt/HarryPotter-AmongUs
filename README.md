@@ -1,5 +1,5 @@
 # Harry Potter Mod
-Un mod Among Us basé sur un thème qui ajoute des éléments et des rôles liés aux films/livres Harry Potter.
+Le Mod est basé sur un thème qui ajoute des éléments et des rôles liés aux films/livres Harry Potter.
 
 https://www.youtube.com/watch?v=b22hzt0sPhE&lc=UgwfTwSKfYn_ASfQxL14AaABAg
 
