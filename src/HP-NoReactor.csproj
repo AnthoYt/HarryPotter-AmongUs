@@ -10,146 +10,142 @@
   </Target>
 
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\0Harmony.dll</HintPath>
-    </Reference>
+    <!-- Dépendances NuGet (si disponibles) -->
+    <PackageReference Include="0Harmony" Version="2.0.0" />
+    <PackageReference Include="BepInEx" Version="5.4.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Rewired" Version="1.1.28" />
+    <PackageReference Include="QRCoder" Version="1.4.1" />
+
+    <!-- Références locales (si les DLLs ne sont pas disponibles sur NuGet) -->
     <Reference Include="Apple">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Apple.dll</HintPath>
+      <HintPath>libs\Apple.dll</HintPath>
     </Reference>
     <Reference Include="AppleCore">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\AppleCore.dll</HintPath>
+      <HintPath>libs\AppleCore.dll</HintPath>
     </Reference>
     <Reference Include="AppleMacos">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\AppleMacos.dll</HintPath>
+      <HintPath>libs\AppleMacos.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Assembly-CSharp.dll</HintPath>
+      <HintPath>libs\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>libs\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="AssemblyUnhollower">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\AssemblyUnhollower.dll</HintPath>
+      <HintPath>libs\AssemblyUnhollower.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx.Core">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\BepInEx.Core.dll</HintPath>
+      <HintPath>libs\BepInEx.Core.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx.IL2CPP">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\BepInEx.IL2CPP.dll</HintPath>
+      <HintPath>libs\BepInEx.IL2CPP.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx.Preloader.Core">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\BepInEx.Preloader.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FacebookStore">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\FacebookStore.dll</HintPath>
+      <HintPath>libs\BepInEx.Preloader.Core.dll</HintPath>
     </Reference>
     <Reference Include="Hazel">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Hazel.dll</HintPath>
+      <HintPath>libs\Hazel.dll</HintPath>
     </Reference>
     <Reference Include="hunterlib">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\plugins\hunterlib.dll</HintPath>
+      <HintPath>libs\hunterlib.dll</HintPath>
     </Reference>
     <Reference Include="Iced">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\Iced.dll</HintPath>
+      <HintPath>libs\Iced.dll</HintPath>
     </Reference>
     <Reference Include="Il2Cpp.TlsAdapter">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\Il2Cpp.TlsAdapter.dll</HintPath>
+      <HintPath>libs\Il2Cpp.TlsAdapter.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppDumper">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\Il2CppDumper.dll</HintPath>
+      <HintPath>libs\Il2CppDumper.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppMono.Security">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Il2CppMono.Security.dll</HintPath>
+      <HintPath>libs\Il2CppMono.Security.dll</HintPath>
     </Reference>
     <Reference Include="Il2Cppmscorlib">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Il2Cppmscorlib.dll</HintPath>
+      <HintPath>libs\Il2Cppmscorlib.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Il2CppSystem.dll</HintPath>
+      <HintPath>libs\Il2CppSystem.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Configuration">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Il2CppSystem.Configuration.dll</HintPath>
+      <HintPath>libs\Il2CppSystem.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Core">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Il2CppSystem.Core.dll</HintPath>
+      <HintPath>libs\Il2CppSystem.Core.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Data">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Il2CppSystem.Data.dll</HintPath>
+      <HintPath>libs\Il2CppSystem.Data.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Net.Http">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Il2CppSystem.Net.Http.dll</HintPath>
+      <HintPath>libs\Il2CppSystem.Net.Http.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Numerics">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Il2CppSystem.Numerics.dll</HintPath>
+      <HintPath>libs\Il2CppSystem.Numerics.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Runtime.Serialization">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Il2CppSystem.Runtime.Serialization.dll</HintPath>
+      <HintPath>libs\Il2CppSystem.Runtime.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Xml">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Il2CppSystem.Xml.dll</HintPath>
+      <HintPath>libs\Il2CppSystem.Xml.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Xml.Linq">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Il2CppSystem.Xml.Linq.dll</HintPath>
+      <HintPath>libs\Il2CppSystem.Xml.Linq.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\Mono.Cecil.dll</HintPath>
+      <HintPath>libs\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Mdb">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\Mono.Cecil.Mdb.dll</HintPath>
+      <HintPath>libs\Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Pdb">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\Mono.Cecil.Pdb.dll</HintPath>
+      <HintPath>libs\Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Rocks">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\Mono.Cecil.Rocks.dll</HintPath>
+      <HintPath>libs\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="MonoMod.RuntimeDetour">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\MonoMod.RuntimeDetour.dll</HintPath>
+      <HintPath>libs\MonoMod.RuntimeDetour.dll</HintPath>
     </Reference>
     <Reference Include="MonoMod.Utils">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\MonoMod.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Newtonsoft.Json.dll</HintPath>
+      <HintPath>libs\MonoMod.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Purchasing.Common">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Purchasing.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="QRCoder">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\QRCoder.dll</HintPath>
+      <HintPath>libs\Purchasing.Common.dll</HintPath>
     </Reference>
     <Reference Include="Rewired_Core">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Rewired_Core.dll</HintPath>
+      <HintPath>libs\Rewired_Core.dll</HintPath>
     </Reference>
     <Reference Include="Rewired_Windows">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Rewired_Windows.dll</HintPath>
+      <HintPath>libs\Rewired_Windows.dll</HintPath>
     </Reference>
     <Reference Include="Security">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Security.dll</HintPath>
+      <HintPath>libs\Security.dll</HintPath>
     </Reference>
     <Reference Include="SemVer">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\SemVer.dll</HintPath>
+      <HintPath>libs\SemVer.dll</HintPath>
     </Reference>
     <Reference Include="Stores">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Stores.dll</HintPath>
+      <HintPath>libs\Stores.dll</HintPath>
     </Reference>
     <Reference Include="UnhollowerBaseLib">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\UnhollowerBaseLib.dll</HintPath>
+      <HintPath>libs\UnhollowerBaseLib.dll</HintPath>
     </Reference>
     <Reference Include="UnhollowerRuntimeLib">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\core\UnhollowerRuntimeLib.dll</HintPath>
+      <HintPath>libs\UnhollowerRuntimeLib.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Addressables">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Unity.Addressables.dll</HintPath>
+      <HintPath>libs\Unity.Addressables.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>libs\Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ResourceManager">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Unity.ResourceManager.dll</HintPath>
+      <HintPath>libs\Unity.ResourceManager.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>libs\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.dll</HintPath>
@@ -265,96 +261,40 @@
     <Reference Include="UnityEngine.SubstanceModule">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.SubstanceModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.SubsystemsModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.SubsystemsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TerrainModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.TerrainModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TerrainPhysicsModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextCoreModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.TextCoreModule.dll</HintPath>
+    <Reference Include="UnityEngine.SocialPlatformsModule">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.SocialPlatformsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.TilemapModule">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.TilemapModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TLSModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.TLSModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UIElementsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIElementsNativeModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UIElementsNativeModule.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UIModule">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UmbraModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UmbraModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UNETModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UNETModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityAnalyticsModule">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UnityConnectModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UnityConnectModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityCurlModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UnityCurlModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityTestProtocolModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UnityWebRequestModule">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UnityWebRequestModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VehiclesModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.VehiclesModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VFXModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.VFXModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VideoModule">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.VideoModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.VirtualTexturingModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.VirtualTexturingModule.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.VRModule">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.VRModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.WindModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.WindModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XRModule">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\UnityEngine.XRModule.dll</HintPath>
     </Reference>
-    <Reference Include="winrt">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Among Us Modded\BepInEx\unhollowed\winrt.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
+
