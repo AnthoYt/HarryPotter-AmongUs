@@ -19,7 +19,7 @@ namespace HarryPotter
     [BepInPlugin(Id)]
     [BepInProcess("Among Us.exe")]
 
-    //Imagine not having a custom options library? Couldn't be me
+    // Imagine not having a custom options library? Couldn't be me
     [BepInDependency(HunterPlugin.Id)]
 
     public class Plugin : BasePlugin
@@ -38,6 +38,19 @@ namespace HarryPotter
             PopupTMPHandler.Instance = new PopupTMPHandler { AllPopups = new List<TextMeshPro>() };
 
             // Ajout des différents chapeaux à la liste
+            InitializeHats();
+
+            // Configuration de l'affichage du HUD pour le plugin Hunter
+            ConfigureHunterPlugin();
+
+            Harmony.PatchAll();
+
+            // Configuration de la région personnalisée si activée
+            ConfigureCustomRegion();
+        }
+
+        private void InitializeHats()
+        {
             Hat.AllHats = new List<Hat>
             {
                 new ScarfHat1(),
@@ -63,14 +76,16 @@ namespace HarryPotter
                 new FlowerHat(),
                 new HairHat4()
             };
+        }
 
-            // Configuration de l'affichage du HUD pour le plugin Hunter
+        private void ConfigureHunterPlugin()
+        {
             HunterPlugin.DrawHudString = false;
             HunterPlugin.HudScale = 0.8f;
+        }
 
-            Harmony.PatchAll();
-
-            // Configuration de la région personnalisée si activée
+        private void ConfigureCustomRegion()
+        {
             if (Main.Instance.Config.UseCustomRegion)
             {
                 IRegionInfo newRegion = new DnsRegionInfo("51.222.158.63", "Private", StringNames.NoTranslation, new ServerInfo[] 
@@ -88,7 +103,7 @@ namespace HarryPotter
         }
     }
 
-    // Patch pour éviter la bannissement
+    // Patch pour éviter le bannissement
     [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.AmBanned), MethodType.Getter)]
     public static class StatsManager_AmBanned
     { 
@@ -110,6 +125,8 @@ namespace HarryPotter
 
             __result = string.Join("\n", resultLines);
             __result += "\n<#EEFFB3FF>Mod settings:";
+
+            // Ajouter une note d'information sur les popups
             if (Main.Instance.Config.ShowPopups) __result += "\n(Hover over a setting for more info)";
         }
     }
@@ -133,6 +150,7 @@ namespace HarryPotter
                 __instance.text.margin = new Vector4(0, 0, 0.5f, 0);
                 __instance.text.fontSize = 2.5f;
                 __instance.text.transform.localPosition = new Vector3(0, 0, 0);
+
                 Vector3 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height));
                 __instance.text.transform.position = new Vector3(topRight.x - 0.1f, topRight.y - 1.6f);
                 __instance.text.text += "\nCreated by: <#7289DAFF>Hunter101#1337";
