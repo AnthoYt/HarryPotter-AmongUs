@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using HarryPotter.Classes;
 using HarryPotter.Classes.Roles;
 using HarryPotter.Classes.UI;
@@ -11,21 +11,32 @@ namespace HarryPotter.Patches
     {
         static bool Prefix(KillButtonManager __instance)
         {
-            if (__instance == HudManager.Instance.KillButton && Main.Instance.GetLocalModdedPlayer()?.Role?.RoleName == "Bellatrix" && ((Bellatrix)Main.Instance.GetLocalModdedPlayer().Role).MindControlledPlayer != null)
+            // Vérification si le bouton de tuerie est celui de l'interface et si le joueur moddé est Bellatrix et sous contrôle mental
+            var localPlayer = Main.Instance.GetLocalModdedPlayer();
+            if (__instance == HudManager.Instance.KillButton && localPlayer?.Role?.RoleName == "Bellatrix")
             {
-                PlayerControl killer = ((Bellatrix)Main.Instance.GetLocalModdedPlayer().Role).MindControlledPlayer._Object;
-                if (HudManager.Instance.KillButton.CurrentTarget != null && !Main.Instance.ControlKillUsed)
+                var bellatrixRole = (Bellatrix)localPlayer.Role;
+                var mindControlledPlayer = bellatrixRole.MindControlledPlayer;
+
+                // Si un joueur est sous contrôle mental et la cible n'est pas déjà définie, on procède à l'exécution
+                if (mindControlledPlayer != null && HudManager.Instance.KillButton.CurrentTarget != null && !Main.Instance.ControlKillUsed)
                 {
                     Main.Instance.ControlKillUsed = true;
-                    Main.Instance.RpcKillPlayer(killer, HudManager.Instance.KillButton.CurrentTarget, true);
+                    Main.Instance.RpcKillPlayer(mindControlledPlayer._Object, HudManager.Instance.KillButton.CurrentTarget, true);
                 }
-                return false;
+                return false; // On empêche l'exécution de la méthode originale
             }
-            
+
+            // Si le joueur ne peut pas bouger, on ne fait rien
             if (!PlayerControl.LocalPlayer.CanMove) return false;
-            if (Main.Instance.GetLocalModdedPlayer()?.Role != null)
-                return Main.Instance.GetLocalModdedPlayer().Role.PerformKill(__instance);
-            return true;
+
+            // Si le joueur a un rôle, on appelle la méthode PerformKill spécifique à ce rôle
+            if (localPlayer?.Role != null)
+            {
+                return localPlayer.Role.PerformKill(__instance);
+            }
+
+            return true; // Si aucune des conditions précédentes n'est remplie, on laisse l'exécution continuer
         }
     }
 }
