@@ -18,13 +18,12 @@ Ce mod est livré avec un lanceur facile à utiliser. REMARQUE : Le lanceur est 
 
 # Turo d'installation
 
-Pour un didacticiel d'installation vidéo, allez [here](https://www.youtube.com/watch?v=MN-prLtBrcQ).
+Pour un didacticiel d'installation vidéo, allez [Tuto](à venir).
 
-- Vérifiez que vous avez installé le [C++ Redist](https://aka.ms/vs/16/release/vc_redist.x86.exe).
 - Cliquez sur l'onglet intitulé "Releases" à droite de cette page.
-- Cliquez sur le fichier zip dans la fenêtre de la dernière version (soit "latest.zip", soit "HPMod.zip").
+- Cliquez sur le fichier zip dans la fenêtre de la dernière version (soit "latest.zip", soit "HarryPotter.zip").
 - Une fois téléchargé, ouvrez le fichier zip.
-- Ouvrez Steam, faites un clic droit sur Among Us, survolez « Gérer », puis appuyez sur « Parcourir les fichiers locaux ».
+- Ouvrez Steam ou Epic, faites un clic droit sur Among Us, survolez « Gérer », puis appuyez sur « Parcourir les fichiers locaux ».
 - Si vous voyez un dossier appelé "BepInEx", supprimez-le avant d'installer le mod. Ceci permet de vérifier que vous n'installez pas accidentellement plusieurs mods incompatibles. 
 - Faites glisser tous les fichiers du fichier zip téléchargé dans votre dossier Among Us (s'il vous invite à remplacer des fichiers, faites-le).
 - Ouvrez le jeu et attendez ; le premier démarrage peut prendre quelques minutes.
@@ -72,6 +71,7 @@ Temps de recharge partagés de Voldemort |  Lorsqu'ils sont activés, les bouton
 
 # Bugs ou suggestions de fonctionnalités
 Pour obtenir une aide générale sur les problèmes, les suggestions de fonctionnalités ou les bogues, rejoignez le <a href="https://discord.com/invite/ad7aMevNMx" target="_blank">Discord</a>
+Ou réaliser un [Ticket](https://github.com/AnthoYt/Royale-Us/issues/15)
 
 # Licence
 Ce logiciel est distribué sous le <a href="./LICENSE">`GNU GPLv3 License`</a>.
