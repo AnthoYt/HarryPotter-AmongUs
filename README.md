@@ -70,7 +70,7 @@ Afficher les fenêtres contextuelles d'information/info-bulles |  Lorsque « Act
 Temps de recharge partagés de Voldemort |  Lorsqu'ils sont activés, les boutons Kill et Curse partageront un temps de recharge.
 
 # Bugs ou suggestions de fonctionnalités
-Pour obtenir une aide générale sur les problèmes, les suggestions de fonctionnalités ou les bogues, rejoignez le <a href="https://discord.com/invite/ad7aMevNMx" target="_blank">Discord</a>
+Pour obtenir une aide générale sur les problèmes, les suggestions de fonctionnalités ou les bugs, rejoignez le <a href="https://discord.com/invite/ad7aMevNMx" target="_blank">Discord</a>
 Ou réaliser un [Ticket](https://github.com/AnthoYt/Royale-Us/issues/15)
 
 # Licence
