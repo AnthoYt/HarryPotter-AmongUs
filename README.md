@@ -1,7 +1,8 @@
 # Harry Potter Mod
 Le Mod est basé sur un thème qui ajoute des éléments et des rôles liés aux films/livres Harry Potter.
 [Gameplay](https://www.youtube.com/watch?v=b22hzt0sPhE&lc=UgwfTwSKfYn_ASfQxL14AaABAg)
-![image](https://github.com/user-attachments/assets/7fc215b2-d560-4c1c-8c99-ad356f6bfdca)
+![image](https://github.com/user-attachments/assets/87d30762-3166-4351-b044-56d2fb747511)
+
 
 # Instructions d'installation (Launcher)
 
