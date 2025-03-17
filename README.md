@@ -8,7 +8,7 @@ Le Mod est basé sur un thème qui ajoute des éléments de Harry Potter.
 Pour un didacticiel d'installation vidéo, allez [Tuto](à venir).
 
 - Cliquez sur l'onglet intitulé ["Releases"](https://github.com/AnthoYt/HarryPotter-AmongUs/releases).
-- Cliquez sur le fichier zip dans la fenêtre de la dernière version (soit "latest.zip", soit "HarryPotter.zip").
+- Cliquez sur le fichier zip dans la fenêtre de la dernière version (soit "HarryPotter.zip").
 - Une fois téléchargé, ouvrez le fichier zip et extrait les fichiers.
 - Ouvrez Steam ou Epic, faites un clic droit sur Among Us, survolez « Gérer », puis appuyez sur « Parcourir les fichiers locaux ».
 - ℹ️ Si vous voyez un dossier appelé "BepInEx", supprimez-le avant d'installer le mod. Ceci permet de vérifier que vous n'installez pas accidentellement plusieurs mods incompatibles. 
