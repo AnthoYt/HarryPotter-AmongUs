@@ -3,32 +3,18 @@ Le Mod est basé sur un thème qui ajoute des éléments de Harry Potter.
 [Gameplay](https://www.youtube.com/watch?v=b22hzt0sPhE&lc=UgwfTwSKfYn_ASfQxL14AaABAg)
 ![image](https://github.com/user-attachments/assets/87d30762-3166-4351-b044-56d2fb747511)
 
-
-# Instructions d'installation (Launcher)
-
-Ce mod est livré avec un lanceur facile à utiliser. REMARQUE : Le lanceur est parfois signalé comme étant un virus/dangereux. Si vous rencontrez des problèmes avec le lanceur ou des inquiétudes concernant sa sécurité, vous pouvez installer le mod de manière traditionnelle. (voir ci-dessous)
-
-- Vérifiez que vous avez installé le [C++ Redist](https://aka.ms/vs/16/release/vc_redist.x86.exe).
-- Cliquez sur l'onglet intitulé "Releases" à droite de cette page.
-- Téléchargez le "HPLauncher.exe" depuis la section "Actifs".
-- Une fois téléchargé, lancez le fichier exe.
-- Cliquez sur le bouton "Installer" et attendez que le mod termine l'installation.
-- Une fois installé, appuyez sur le bouton "Play".
-- Une fois le jeu ouvert, démarrez une partie et recherchez le filigrane à droite de l'écran.
-- Le module est installé. Hourra!
-
 # Turo d'installation
 
 Pour un didacticiel d'installation vidéo, allez [Tuto](à venir).
 
-- Cliquez sur l'onglet intitulé "Releases" à droite de cette page.
+- Cliquez sur l'onglet intitulé ["Releases"](https://github.com/AnthoYt/HarryPotter-AmongUs/releases).
 - Cliquez sur le fichier zip dans la fenêtre de la dernière version (soit "latest.zip", soit "HarryPotter.zip").
-- Une fois téléchargé, ouvrez le fichier zip.
+- Une fois téléchargé, ouvrez le fichier zip et extrait les fichiers.
 - Ouvrez Steam ou Epic, faites un clic droit sur Among Us, survolez « Gérer », puis appuyez sur « Parcourir les fichiers locaux ».
-- Si vous voyez un dossier appelé "BepInEx", supprimez-le avant d'installer le mod. Ceci permet de vérifier que vous n'installez pas accidentellement plusieurs mods incompatibles. 
+- ℹ️ Si vous voyez un dossier appelé "BepInEx", supprimez-le avant d'installer le mod. Ceci permet de vérifier que vous n'installez pas accidentellement plusieurs mods incompatibles. 
 - Faites glisser tous les fichiers du fichier zip téléchargé dans votre dossier Among Us (s'il vous invite à remplacer des fichiers, faites-le).
 - Ouvrez le jeu et attendez ; le premier démarrage peut prendre quelques minutes.
-- Une fois le jeu ouvert, démarrez une partie locale et recherchez le filigrane à droite de l'écran.
+- Une fois le jeu ouvert, démarrez une partie locale ou en ligne et les paramètres seront installés.
 - Le mod est installé. Hourra!
 
 # Roles
