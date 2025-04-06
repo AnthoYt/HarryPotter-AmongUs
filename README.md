@@ -3,6 +3,8 @@ Le Mod est basé sur un thème qui ajoute des éléments de Harry Potter.
 [Gameplay](https://www.youtube.com/watch?v=b22hzt0sPhE&lc=UgwfTwSKfYn_ASfQxL14AaABAg)
 ![image](https://github.com/user-attachments/assets/87d30762-3166-4351-b044-56d2fb747511)
 
+Youtube [Antho](https://www.youtube.com/@Royale_Antho)
+
 # Tuto d'installation
 
 Pour un didacticiel d'installation vidéo, allez [Tuto](à venir).
