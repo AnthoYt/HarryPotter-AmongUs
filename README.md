@@ -19,7 +19,7 @@ Pour un didacticiel d'installation vidéo, allez [Tuto](à venir).
 - Une fois le jeu ouvert, démarrez une partie locale ou en ligne et les paramètres seront installés.
 - Le mod est installé. Hourra!
 
-# Roles
+# Rôles
 
 Role  | Capacité passive |  Capacité active  |  Capacité active #2
 ------------- | ------------- | ------------- | -------------
