@@ -7,7 +7,7 @@ Youtube [Antho](https://www.youtube.com/@Royale_Antho)
 
 # Tuto d'installation
 
-Pour un didacticiel d'installation vidéo, allez [Tuto](à venir).
+Pour un didacticiel d'installation vidéo, allez [Tuto](https://www.youtube.com/watch?v=YfvfaTHEN1Y).
 
 - Cliquez sur l'onglet intitulé ["Releases"](https://github.com/AnthoYt/HarryPotter-AmongUs/releases).
 - Cliquez sur le fichier zip dans la fenêtre de la dernière version (soit "HarryPotter.zip").
